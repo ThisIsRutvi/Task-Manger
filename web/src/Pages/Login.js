@@ -19,6 +19,7 @@ function Login(){
 
             localStorage.setItem('token', res.data.user.token);
             console.log('Token:', res.data.user.token); 
+            console.log("LOGIN RESPONSE USER:", res.data.user)
 
             setlogin(
                 {
@@ -34,15 +35,50 @@ function Login(){
     }
 
   return(
-    <div className="flex flex-col items-center justify-center min-h-screen bg-gradient-to-br from-slate-100 via-gray-100 to-slate-200">
-        <div className="bg-gray-50 py-2 px-4 rounded-3xl w-[400px] shadow-2xl">
-         <h1 className="m-5 text-2xl font-semibold text-slate-900">Login</h1>
-        <input type="text" className="m-5 h-7 w-[310px] border border-gray-300 rounded-md focus:outline-none focus:border-emerald-500" placeholder="Email" name="email" value={login.email} onChange={handleChange}></input><br></br>
-        <input type="text" className="m-5 h-7 w-[310px] border border-gray-300 rounded-md focus:outline-none focus:border-emerald-500" placeholder="Password" name="password" value={login.password} onChange={handleChange}></input><br></br>
-        <button onClick={handleSubmit} className="bg-emerald-600 hover:bg-emerald-700 m-5 w-[310px] h-7 shadow-lg text-white">Login</button><br></br>
-        <p className="m-5">Don't Have an account?<Link to='/signup' className="text-blue-600 hover:underline">Signup</Link></p>
-        </div>
+    <div className="flex min-h-screen items-center justify-center bg-gradient-to-br from-slate-100 via-gray-100 to-slate-200">
+  <div className="w-[400px] rounded-3xl bg-gray-50 px-6 py-6 shadow-2xl">
+
+    <h1 className="mb-6 text-center text-2xl font-semibold text-slate-900">
+      Login
+    </h1>
+
+    <div className="flex flex-col items-center gap-4">
+      <input
+        type="email"
+        placeholder="Email"
+        name="email"
+        value={login.email}
+        onChange={handleChange}
+        className="h-9 w-full max-w-[310px] rounded-md border border-gray-300 px-2 focus:border-emerald-500 focus:outline-none"
+      />
+
+      <input
+        type="password"
+        placeholder="Password"
+        name="password"
+        value={login.password}
+        onChange={handleChange}
+        className="h-9 w-full max-w-[310px] rounded-md border border-gray-300 px-2 focus:border-emerald-500 focus:outline-none"
+      />
+
+      <button
+        onClick={handleSubmit}
+        className="h-9 w-full max-w-[310px] rounded-md bg-emerald-600 text-white shadow-lg hover:bg-emerald-700"
+      >
+        Login
+      </button>
     </div>
+
+    <p className="mt-6 text-center text-sm">
+      Don&apos;t have an account?{" "}
+      <Link to="/signup" className="text-blue-600 hover:underline">
+        Signup
+      </Link>
+    </p>
+
+  </div>
+</div>
+
   )
 }
 export default Login

@@ -1,0 +1,19 @@
+Task: Develop a Task Management Application
+Backend:
+User Authentication:
+Implement user authentication with JWT.
+Include API endpoints for user registration, login, and logout.
+Task API:
+Create an Express API with CRUD operations for managing tasks.
+Endpoints should include GET /api/tasks, GET /api/tasks/:id, POST /api/tasks, PUT /api/tasks/:id, DELETE /api/tasks/:id.
+Frontend:
+Task List Page:
+Build a React page that displays a list of tasks retrieved from the backend (GET /api/tasks).
+Task Details Page:
+Implement a page that shows details of a specific task when clicked (GET /api/tasks/:id).
+Task Creation and Update:
+Allow users to create new tasks (POST /api/tasks) and update existing tasks (PUT /api/tasks/:id).
+User Authentication in React:
+Implement a login page where users can log in and access the task management features.
+Use JWT obtained during login to authenticate subsequent requests to the backend.
+

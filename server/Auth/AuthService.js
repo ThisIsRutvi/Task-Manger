@@ -5,7 +5,7 @@ import dotenv from 'dotenv'
 
 dotenv.config()
 
-const SignupService = async({uname,email,password})=>{
+const SignupService = async({uname,email,password,profilePic})=>{
 
     const user = await User.findOne({email})
 
@@ -18,8 +18,8 @@ const SignupService = async({uname,email,password})=>{
     const newuser = await User.create({
     uname,
     email,
-    password:hashed
-
+    password:hashed,
+    profilePic
 })
 
   const token= jwt.sign(
@@ -34,7 +34,8 @@ const SignupService = async({uname,email,password})=>{
         user: {
             id: newuser._id,
             uname: newuser.uname,
-            email: newuser.email
+            email: newuser.email,
+            profilePic: newuser.profilePic
         }
     };
 }
@@ -63,13 +64,35 @@ const LoginService = async({email,password})=>{
     token,
         user:{
             id:user._id,
-            email:user.email
+            email:user.email,
+                profilePic: user.profilePic
         }
     }
    )
 }
 
+const getUser = async(id)=>{
+    const user = await User.findById({_id:id})
+    return user
+}
+
+const updateUser = async (id, data) => {
+  const updates = {};
+
+  if (data.profilePic) {
+    updates.profilePic = data.profilePic; // now this comes from req.file.filename
+  }
+  if (data.uname) updates.uname = data.uname;
+  if (data.password) updates.password = await bcrypt.hash(data.password, 10);
+
+  const user = await User.findByIdAndUpdate(id, updates, { new: true });
+  return user;
+};
+
+
 export default {
     SignupService,
-    LoginService
+    LoginService,
+    getUser,
+    updateUser
 }

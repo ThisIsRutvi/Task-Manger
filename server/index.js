@@ -15,8 +15,10 @@ app.use(cors())
 mongoose.connect(process.env.MONGO_URL)
 .then(()=>console.log('mogodb got connected'))
 .catch((err)=>console.log(err))
+app.use('/uploads', express.static('upload'))
 
 app.use('/api',router)
+
 
 app.listen(port,((err)=>{
     if(err){
